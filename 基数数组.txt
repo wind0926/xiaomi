@@ -1,0 +1,52 @@
+package test;
+
+import org.junit.Test;
+
+import java.util.Arrays;
+
+public class RadixSort {
+    public static void main(String[] args) {
+        int[] arr=new int[]{24,756,235,67,34,1,7,4,878,554,54,67};
+        radixSort(arr);
+        System.out.println(Arrays.toString(arr));
+    }
+
+    @Test
+    public static void radixSort(int[] arr){
+
+        //存入数组中的最大数字
+        int max=0;
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i]>max){
+                max=arr[i];
+            }
+        }
+        int maxLength=(max+"").length();
+
+        int[][] temp=new int[10][arr.length];
+        int[] counts=new int[10];
+
+        for(int i=0,n=1;i<maxLength;i++,n*=10){
+
+            for(int j=0;j<arr.length;j++){
+                int ys=arr[j]/n%10;
+                temp[ys][counts[ys]]=arr[j];
+                counts[ys]++;
+            }
+
+            int index=0;
+            for(int k=0;k<counts.length;k++){
+                if(counts[k]!=0){
+                    for(int l=0;l<counts[k];l++){
+                        arr[index]=temp[k][l];
+                        index++;
+                    }
+                }
+                counts[k]=0;
+            }
+
+        }
+
+
+    }
+}

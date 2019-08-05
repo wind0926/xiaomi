@@ -1,0 +1,43 @@
+package com.itheima;
+import java.util.Arrays;
+public class test1 {
+    public static void main(String[] args) {
+        int[] arr=new int[]{2,3,5,1,4,7,2,9};
+       quickSort(arr,0,arr.length-1);
+
+//        quickSort(arr,0,5);
+       System.out.println(Arrays.toString(arr));
+    }
+
+    public static void quickSort(int[] arr,int start,int end){
+
+        if(end>start){
+            int based=arr[start];
+            int left=start;
+            int right=end;
+            while(right>left){
+                while(right>left&&arr[right]>=based){
+                    right--;
+                }
+
+                arr[left]=arr[right];
+
+
+                while (right>left&&arr[left]<=based){
+                    left++;
+                }
+                arr[right]=arr[left];
+
+            }
+            arr[left]=based;
+            System.out.println(left);
+            System.out.println(right);
+              quickSort(arr,start,left-1);
+              quickSort(arr,right+1,end);
+
+        }
+
+    }
+
+
+}
